@@ -1,0 +1,99 @@
+<head>
+    <title>Final Tone</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="search.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <link href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+
+</head>
+
+
+
+<template name="mainTemplate">
+    {{> Template.dynamic template=main}}
+</template>
+
+<template name="userPage">
+    <head>
+    <title>user main main</title>
+    </head>
+    {{> Template.dynamic template=main data=_params}}
+</template>
+
+<template name="blabla">
+    <h1>user blabla ({{name}})</h1>
+</template>
+
+
+<template name="bla">
+    <!--<h1>Live now</h1>-->
+    <!--<button>Create your own</button>-->
+    {{> loginButtons}}
+    <div style="margin: 340px 50px;">
+        <br/>
+        {{#each all_users}}
+            {{> t_user}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="user_page">
+
+    <div id="page_header">
+        <a href="/" style="position: absolute; right: 50px; top: 30px;" class="myButton">Back To The Portal</a>
+    </div>
+
+    <a style="position: absolute; top: 280px; left: 30%; font-size: 30px; text-align: center" >
+        {{current_user.username}} is now Playing: <br/> <img src="note.png" align="middle" width="40px" height="40px" style="position: relative; top: -5px"> {{current_user.song_name}}</a>
+    <br/>
+    <div style="position: relative;top: 380px; left:5%; display: inline-block">
+        <iframe id="player" type="text/html" width="640" height="390"
+                src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
+                frameborder="0"></iframe>
+    </div>
+
+    {{#if check_current_user }}
+        <div  style="position: relative; top: 0px; left:5% ;display: inline-block">
+            <div id="buttons" style="width: 500px">
+                <input id="query" value='' type="text" style="width:300px; margin-left: 10%"/>
+                <button id="search-button">Search</button>
+            </div>
+            <div id="search-container" style="position: absolute; top: 25px; left:10%;width: 600px; ;">
+            </div>
+        </div>
+    {{else}}
+    <div  style="position: relative; top: 60px; left:8% ;display: inline-block">
+        <h1>Love {{current_user.username}}'s music? Show him some love!</h1>
+        <img class="like" src="empty_heart.png" style="height: 50px; cursor: pointer;position: relative;top: 17px;"/>
+    </div>
+    {{/if}}
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    {{ init }}
+</template>
+
+<template name="bla2">
+    <h1>Moti</h1>
+    <a href="/">haim</a>
+</template>
+
+<template name="t_user">
+    <a style="text-decoration: none;margin-left: 95px" href="/{{_id}}">
+        <div class="t_user" style="border: 2px solid black; width: 35%; margin: 15px; border-radius: 8px; display: inline-block;height: 150px">
+            <!--<img src="record.png"/>-->
+            <div style="display: inline-block;display: inline-block; position: relative;top: 5px">
+                <!--<img src="record.png"/>-->
+                <div id="container_disc">
+                    <div id="disc"></div>
+                </div>
+            </div>
+            <div class = "card" style="display: inline-block; position: relative;top: -80px">
+                <h2 style="color: black;font-size: xx-large; font-family: cursive;">{{username}}</h2>
+                <h3 class="truncate" style="color:#f5799a; font-family: cursive; font-size: 20px;">{{song_name}}</h3>
+            </div>
+
+        </div>
+    </a>
+</template>

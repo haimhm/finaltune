@@ -1,0 +1,307 @@
+/* CSS declarations go here */
+body {
+    font-family: sans-serif;
+    background-color: white; /* #315481; */
+    /*background-image: linear-gradient(to bottom, #315481, #918e82 100%);*/
+    background-attachment: fixed;
+    background-image: url("FinalTune4.png");
+    /*background-size:cover;*/
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 0;
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100%;
+    background: white;
+}
+
+header {
+    background: #d2edf4;
+    background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+    padding: 20px 15px 15px 15px;
+    position: relative;
+}
+
+#login-buttons {
+    display: block;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    margin-top: 10px;
+    margin-bottom: -10px;
+    position: relative;
+}
+
+.new-task input {
+    box-sizing: border-box;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding-right: 80px;
+    font-size: 1em;
+}
+
+.new-task input:focus{
+    outline: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.delete {
+    float: right;
+    font-weight: bold;
+    background: none;
+    font-size: 1em;
+    border: none;
+    position: relative;
+}
+
+li {
+    position: relative;
+    list-style: none;
+    padding: 15px;
+    border-bottom: #eee solid 1px;
+}
+
+li .text {
+    margin-left: 10px;
+}
+
+li.checked {
+    color: #888;
+}
+
+li.checked .text {
+    text-decoration: line-through;
+}
+
+li.private {
+    background: #eee;
+    border-color: #ddd;
+}
+
+header .hide-completed {
+    float: right;
+}
+
+.toggle-private {
+    margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+    li {
+        padding: 12px 15px;
+    }
+
+    .search {
+        width: 150px;
+        clear: both;
+    }
+
+    .new-task input {
+        padding-bottom: 5px;
+    }
+}
+a {color: rgba(0, 0, 0, 0.97);}      /* unvisited link */
+a:visited {color:#000;}  /* visited link */
+a:hover {color:#000;}  /* mouse over link */
+a:active {color:#000;}  /* selected link */
+
+.t_user{
+    /*background-image: url("record.png");*/
+    /*background-size: 100%;*/
+}
+
+.myButton {
+    -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+    background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+    background-color:#768d87;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Broadway;
+    font-size:20px;
+    font-weight:bold;
+    padding:11px 23px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+    background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+    background-color:#6c7c7c;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+.card{
+    font-family: David;
+    color: darkgreen;
+    /*font-size: 120%;*/
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    align-content: center;
+    width: 250px;
+}
+
+
+
+#container_disc {
+    height: 130px;
+    width: 130px;
+    background: rgba(255,255,255,.8);
+    border-radius: 24px;
+    position: relative;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+    transition: .5s linear;
+    top: -15px;
+}
+#container_disc:before {
+    content: "\f001";
+    font-family: FontAwesome;
+    font-size: 70px;
+    background: -webkit-linear-gradient(50deg, #FD9F85 50%, #E837C2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #FF7E24;
+    position: absolute;
+    line-height: 110px;
+    left: 30px;
+}
+#container_disc:hover #disc {
+    margin-left: 110px;
+    transform: rotate(360deg);
+}
+#disc {
+    position: relative;
+    height: 110px;
+    width: 110px;
+    left: -10px;
+    z-index: -1;
+    border-radius: 50%;
+    background: transparent;
+    margin: 20px;
+    transition: .9s linear;
+    bottom: -10px;
+    box-shadow:
+            0 8px 6px -8px rgba(0,0,0,0.5),
+            0 0 1px 1px rgba(0,0,0,0.5),
+            0 0 0 1px #666 inset,
+            0 0 0 2px #222 inset,
+            0 30px 0px -29px #444 inset,
+            0 -30px 0px -29px #444 inset,
+            0 0 0 3px #333 inset,
+            0 0 0 4px #222 inset,
+            0 0 0 5px #333 inset,
+            0 33px 0px -27px #444 inset,
+            0 -33px 0px -27px #444 inset,
+            0 0 0 6px #222 inset,
+            0 0 0 7px #333 inset,
+            0 0 0 8px #222 inset,
+            0 34px 0px -25px #444 inset,
+            0 -34px 0px -25px #444 inset,
+            0 0 0 9px #333 inset,
+            0 0 0 10px #222 inset,
+            0 0 0 11px #333 inset,
+            0 35px 0px -23px #444 inset,
+            0 -35px 0px -23px #444 inset,
+            0 0 0 12px #222 inset,
+            0 0 0 13px #333 inset,
+            0 0 0 14px #222 inset,
+            0 36px 0px -21px #444 inset,
+            0 -36px 0px -21px #444 inset,
+            0 0 0 15px #333 inset,
+            0 0 0 16px #222 inset,
+            0 0 0 17px #333 inset,
+            0 37px 0px -19px #444 inset,
+            0 -37px 0px -19px #444 inset,
+            0 0 0 18px #222 inset,
+            0 0 0 19px #333 inset,
+            0 0 0 20px #222 inset,
+            0 38px 0px -17px #444 inset,
+            0 -38px 0px -17px #444 inset,
+            0 0 0 21px #333 inset,
+            0 0 0 22px #222 inset,
+            0 0 0 23px #333 inset,
+            0 39px 0px -15px #444 inset,
+            0 -39px 0px -15px #444 inset,
+            0 0 0 24px #222 inset,
+            0 0 0 25px #333 inset,
+            0 0 0 26px #222 inset,
+            0 40px 0px -13px #444 inset,
+            0 -40px 0px -13px #444 inset,
+            0 0 0 27px #333 inset,
+            0 0 0 28px #222 inset,
+            0 0 0 29px #333 inset,
+            0 41px 0px -11px #444 inset,
+            0 -41px 0px -11px #444 inset,
+            0 0 0 30px #222 inset,
+            0 0 0 43px #333 inset,
+            0 0 0 45px #AF2A10 inset,
+            0 0 0 47px #333 inset,
+            0 0 0 62px #AF2A10 inset,
+            0 0 10px 78px rgba(0,0,0,0.5) inset;
+}
+.truncate {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.centered {
+    text-align: center;
+    vertical-align: middle;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
