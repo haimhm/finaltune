@@ -79,9 +79,8 @@ Template.user_page.helpers({
     },
     init(){
         gapi.client.setApiKey('AIzaSyBDDItQMbwlcF6q2bcZKKOyoISQxuhUk4Q');
-        console.log('loade222222d');
         gapi.client.load('youtube', 'v3', function(){
-            console.log('loaded');
+            console.log('youtube loaded');
         });
     },
 });

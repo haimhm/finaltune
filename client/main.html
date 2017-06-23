@@ -1,5 +1,5 @@
 <head>
-    <title>Final Tone</title>
+    <title>Final Tune</title>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="auth.js"></script>
@@ -49,23 +49,29 @@
     <a style="position: absolute; top: 280px; left: 30%; font-size: 30px; text-align: center" >
         {{current_user.username}} is now Playing: <br/> <img src="note.png" align="middle" width="40px" height="40px" style="position: relative; top: -5px"> {{current_user.song_name}}</a>
     <br/>
-    <div style="position: relative;top: 380px; left:5%; display: inline-block">
-        <iframe id="player" type="text/html" width="640" height="390"
-                src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
-                frameborder="0"></iframe>
-    </div>
 
     {{#if check_current_user }}
-        <div  style="position: relative; top: 0px; left:5% ;display: inline-block">
-            <div id="buttons" style="width: 500px">
-                <input id="query" value='' type="text" style="width:300px; margin-left: 10%"/>
-                <button id="search-button">Search</button>
-            </div>
-            <div id="search-container" style="position: absolute; top: 25px; left:10%;width: 600px; ;">
+        <div style="position: relative;top: 380px; left:5%; display: inline-block">
+            <iframe id="player" type="text/html" width="492" height="300"
+                    src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
+                    frameborder="0"></iframe>
+
+            <div  style="position: relative; top: 0px; left:5% ;display: inline-block;overflow: auto;height: 300px;">
+                <div id="buttons" style="width: 500px">
+                    <input id="query" value='' type="text" style="width:300px; margin-left: 10%"/>
+                    <button id="search-button">Search</button>
+                </div>
+                <div id="search-container" style="position: absolute; top: 25px; left:10%;width: 600px; ;">
+                </div>
             </div>
         </div>
     {{else}}
     <div  style="position: relative; top: 60px; left:8% ;display: inline-block">
+        <div style="position: relative;top: 380px; left:5%; display: inline-block">
+            <iframe id="player" type="text/html" width="492" height="300"
+                    src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
+                    frameborder="0"></iframe>
+        </div>
         <h1>Love {{current_user.username}}'s music? Show him some love!</h1>
         <img class="like" src="empty_heart.png" style="height: 50px; cursor: pointer;position: relative;top: 17px;"/>
     </div>
@@ -81,7 +87,7 @@
 
 <template name="t_user">
     <a style="text-decoration: none;margin-left: 95px" href="/{{_id}}">
-        <div class="t_user" style="border: 2px solid black; width: 35%; margin: 15px; border-radius: 8px; display: inline-block;height: 150px">
+        <div class="t_user" style="border: 2px solid black; width: 35%; margin: 15px; border-radius: 8px; display: inline-block;height: 150px;background-color: rgba(240, 248, 255, 0.72);">
             <!--<img src="record.png"/>-->
             <div style="display: inline-block;display: inline-block; position: relative;top: 5px">
                 <!--<img src="record.png"/>-->
