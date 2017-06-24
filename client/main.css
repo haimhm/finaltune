@@ -291,12 +291,17 @@ a:active {color:#000;}  /* selected link */
             0 0 10px 78px rgba(0,0,0,0.5) inset;
 }
 .truncate {
-    max-width: 300px;
+    max-width: 325px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.lg-truncate{
+    max-width: 850px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .centered {
     text-align: center;
     vertical-align: middle;

@@ -63,7 +63,7 @@ Template.user_page.onRendered(function () {
 
 Template.user_page.helpers({
     current_user:function () {
-        route = FlowRouter.current();
+        const route = FlowRouter.current();
         return Meteor.users.findOne({_id: route.params._id});
     },
     get_user_name(id) {
@@ -76,6 +76,10 @@ Template.user_page.helpers({
     },
     check_current_user(){
         return Meteor.userId() == Template.instance().data.userId;
+    },
+    get_playlist(){
+        const route = FlowRouter.current();
+        return Meteor.users.findOne({_id: route.params._id}).playlist;
     },
     init(){
         gapi.client.setApiKey('AIzaSyBDDItQMbwlcF6q2bcZKKOyoISQxuhUk4Q');
@@ -108,33 +112,56 @@ Template.user_page.events({
             part: 'snippet',
             maxResults: 5
         });
-
         request.execute(function(response) {
-
-            // var str = JSON.stringify(response.result);
-            // Meteor.users.update({ _id: Meteor.userId() }, {
-            //     $set:{
-            //         song_id: response.items[0].id.videoId,
-            //         song_name: response.items[0].snippet.title,
-            //     }
-            // });
             var options_str = '<li></li>';
             response.items.forEach(function(item){
-                options_str += '<li style="cursor: pointer" class="song_li" song_id="'+item.id.videoId+'" song_name="'+item.snippet.title+'">' +
-                    '<div style="display: inline-block"><img src="'+item.snippet.thumbnails.default.url+'"/></div>' +
-                    '<div style="display: inline-block; position: relative;top: -40px;font-size:large; padding: 10px">' + item.snippet.title + '</div></li>';
+                options_str +=
+                    '<li style="class="song_li" song_id="'+item.id.videoId+'" song_name="'+item.snippet.title+'">' +
+                        '<div style="display: inline-block">' +
+                            '<img src="'+item.snippet.thumbnails.default.url+'"/>' +
+                        '</div>' +
+                        '<div style="display: inline-block; position: relative;top: -40px; font-size:large; padding: 10px;max-width: 325px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' +
+                                item.snippet.title +
+                        '</div>' +
+                        '<br/>' +
+                        '<button class="add_to_playlist">Add to playlist</button>&nbsp;' +
+                        '<button class="play">Play</button>' +
+                    '</li>';
             });
-
             $('#search-container').html('<br/><ul>' + options_str + '</ul>');
         });
     },
-    'click .song_li' (){
+    'click .play' (){
         Meteor.users.update({ _id: Meteor.userId() }, {
             $set:{
                 song_id: $(event.target).parent('li').attr('song_id'),
                 song_name: $(event.target).parent('li').attr('song_name'),
             }
         });
+    },
+    'click .add_to_playlist' (){
+        Meteor.users.update({ _id: Meteor.userId() },
+            {
+                $addToSet: {
+                                playlist: {
+                                    song_id: $(event.target).parent('li').attr('song_id'),
+                                    song_name: $(event.target).parent('li').attr('song_name')
+                                }
+                           }
+            }
+        );
+    },
+    'click .remove_from_playlist'(){
+        Meteor.users.update({ _id: Meteor.userId() },
+            {
+                $pull: {
+                    playlist: {
+                        song_id: $(event.target).attr('song_id'),
+                        song_name: $(event.target).attr('song_name')
+                    }
+                }
+            }
+        );
     },
     'keyup #query'(){
         if (event.keyCode == 13){
@@ -145,15 +172,22 @@ Template.user_page.events({
                 part: 'snippet',
                 maxResults: 5
             });
-
             request.execute(function(response) {
                 var options_str = '<li></li>';
                 response.items.forEach(function(item){
-                    options_str += '<li style="cursor: pointer" class="song_li" song_id="'+item.id.videoId+'" song_name="'+item.snippet.title+'">' +
-                        '<div style="display: inline-block"><img src="'+item.snippet.thumbnails.default.url+'"/></div>' +
-                        '<div style="display: inline-block; position: relative;top: -40px;font-size:large; padding: 10px">' + item.snippet.title + '</div></li>';
+                    options_str +=
+                        '<li style="class="song_li" song_id="'+item.id.videoId+'" song_name="'+item.snippet.title+'">' +
+                            '<div style="display: inline-block">' +
+                                '<img src="'+item.snippet.thumbnails.default.url+'"/>' +
+                            '</div>' +
+                            '<div style="display: inline-block; position: relative;top: -40px; font-size:large; padding: 10px;max-width: 325px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' +
+                                item.snippet.title +
+                            '</div>' +
+                            '<br/>' +
+                            '<button class="add_to_playlist">Add to playlist</button>&nbsp;' +
+                            '<button class="play">Play</button>' +
+                        '</li>';
                 });
-
                 $('#search-container').html('<br/><ul>' + options_str + '</ul>');
             });
         }

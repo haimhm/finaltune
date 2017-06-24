@@ -122,7 +122,9 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/email_tests_setup.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_tests.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/kadira_blaze-layout/2.3.0/web.browser/lib/client/namespace.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_server.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/kadira_blaze-layout/2.3.0/web.browser/lib/client/layout.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/rate-limit/1.0.8/web.browser/rate-limit.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/service-configuration/1.0.11/web.browser/service_configuration_common.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/session/1.1.7/web.browser/session.js" />
@@ -319,7 +321,9 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/email_tests_setup.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_tests.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/kadira_blaze-layout/2.3.0/web.browser/lib/client/namespace.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-password/1.3.7/web.browser/password_server.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/kadira_blaze-layout/2.3.0/web.browser/lib/client/layout.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/rate-limit/1.0.8/web.browser/rate-limit.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/service-configuration/1.0.11/web.browser/service_configuration_common.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/session/1.1.7/web.browser/session.js" />
