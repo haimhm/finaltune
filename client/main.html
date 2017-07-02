@@ -52,9 +52,10 @@
 
     {{#if check_current_user }}
         <div style="position: relative;top: 380px; left:1%; display: inline-block">
-            <iframe id="player" type="text/html" width="492" height="300"
-                    src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
-                    frameborder="0"></iframe>
+            <div id="player"></div>
+            <!--<iframe id="player" type="text/html" width="492" height="300"-->
+                    <!--src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"-->
+                    <!--frameborder="0"></iframe>-->
 
             <div style="position: relative; top: 0px; left:1%;display: inline-block;overflow-y: auto;height: 300px;overflow-x: auto; width:555px">
                 <div id="buttons" style="width: 400px">
@@ -68,7 +69,7 @@
                 <h3>My Playlist:</h3>
                 <ul style="display: inline-block;overflow-y: auto;height: 300px;overflow-x: auto; width:355px">
                     {{#each get_playlist}}
-                        <li class="truncate">{{song_name}}
+                        <li style="cursor: pointer" class="play_from_playlist truncate" song_name="{{song_name}}" song_id="{{song_id}}">{{song_name}}
                             <img class="remove_from_playlist" src="remove.png" style="width: 16px; float:right; cursor: pointer" song_name="{{song_name}}" song_id="{{song_id}}"/>
                         </li>
                     {{/each}}
@@ -78,16 +79,106 @@
     {{else}}
     <div  style="position: relative; top: 60px; left:8% ;display: inline-block">
         <div style="position: relative;top: 380px; left:5%; display: inline-block">
-            <iframe id="player" type="text/html" width="492" height="300"
-                    src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"
-                    frameborder="0"></iframe>
+            <div id="player"></div>
+            <!--<iframe id="player" type="text/html" width="492" height="300" color="blue"-->
+                    <!--src="http://www.youtube.com/embed/{{current_user.song_id}}?enablejsapi=1&origin=http://example.com&autoplay=1"-->
+                    <!--frameborder="0"></iframe>-->
         </div>
         <h1>Love {{current_user.username}}'s music? Show some love!</h1>
         <img class="like" src="empty_heart.png" style="height: 50px; cursor: pointer;position: relative;top: 17px;"/>
     </div>
     {{/if}}
+    <input type="hidden" value="{{current_user.song_id}}" id="curr_song">
+    <input type="hidden" value="{{current_user.song_name}}">
+    <input type="hidden" value="{{get_playlist_ids}}" id="playlist">
     <script src="https://apis.google.com/js/client.js?onload=init"></script>
     {{ init }}
+    <script type="text/javascript">
+        var curr_value = $('#curr_song').val();
+        setInterval(function() {
+            console.log($('#curr_song').val(),curr_value);
+            if($('#curr_song').val() != curr_value ){
+                $('#curr_song').trigger('change');
+                curr_value = $('#curr_song').val();
+                player.cueVideoById(curr_value);
+                player.playVideo();
+            }
+        }, 1000);
+
+        var elem = document.getElementById('yt-iframe');
+        if (elem != null){
+            player = new YT.Player('player', {
+                height: '300',
+                width: '492',
+                videoId: '{{current_user.song_id}}',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            player.playVideo();
+        }
+        var tag = document.createElement('script');
+        tag.id = 'yt-iframe';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        player = document.getElementById('player');
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '300',
+                width: '492',
+                videoId: '{{current_user.song_id}}',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log('Player ready');
+            player.playVideo();
+        }
+
+        // 0 – ended
+        // 1 – playing
+        // 2 – paused
+        // 3 – buffering
+        // 5 – video cued
+        function onPlayerStateChange(event) {
+            var playerStatus = event.data;
+            if (playerStatus == 0) {
+                var v_id = nextSong(player.getVideoData().video_id);
+                player.cueVideoById(v_id);
+                {{#if check_current_user }}
+                    setTimeout(function(){
+                        var v_name = player.getVideoData().title;
+                        Meteor.users.update({ _id: window.location.pathname.substr(1) },
+                                {
+                                    $set:{
+                                        song_id: v_id,
+                                        song_name: v_name,
+                                    }
+                                }
+                        );
+                    }, 1500);
+                {{ else }}
+                    player.playVideo();
+                {{/if}}
+            }
+        }
+        function nextSong(videoId) {
+            var pl = $('#playlist').val().split(',');
+            var index = pl.indexOf(videoId);
+            if (index >= 0){
+                return pl[(index + 1) % pl.length];
+            } else {
+                return pl[0];
+            }
+        }
+    </script>
 </template>
 
 <template name="bla2">
@@ -113,3 +204,4 @@
         </div>
     </a>
 </template>
+

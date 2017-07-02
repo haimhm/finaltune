@@ -87,6 +87,21 @@ Template.user_page.helpers({
             console.log('youtube loaded');
         });
     },
+    get_next_song(){
+        const route = FlowRouter.current();
+        const playlist = Meteor.users.findOne({_id: route.params._id}).playlist;
+        var index = playlist.indexOf(Template.instance().data.current_user.song_id);
+        if (index > 0){
+            return playlist[(index + 1) % playlist.length]
+        } else {
+            return playlist[0];
+        }
+    },
+    get_playlist_ids(){
+        const route = FlowRouter.current();
+        const playlist = Meteor.users.findOne({_id: route.params._id}).playlist;
+        return playlist.map(function(p){return p.song_id}).join(',');
+    }
 });
 Template.user_page.events({
     'click .like'(){
@@ -151,7 +166,17 @@ Template.user_page.events({
             }
         );
     },
-    'click .remove_from_playlist'(){
+    'click .play_from_playlist'(){
+        Meteor.users.update({ _id: Meteor.userId() },
+            {
+                $set:{
+                    song_id: $(event.target).attr('song_id'),
+                    song_name: $(event.target).attr('song_name'),
+                }
+            }
+        );
+    },
+    'click .remove_from_playlist'(event){
         Meteor.users.update({ _id: Meteor.userId() },
             {
                 $pull: {
@@ -162,6 +187,7 @@ Template.user_page.events({
                 }
             }
         );
+        event.stopPropagation();
     },
     'keyup #query'(){
         if (event.keyCode == 13){
