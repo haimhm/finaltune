@@ -125,7 +125,7 @@ Template.user_page.events({
             type: 'video',
             q: q,
             part: 'snippet',
-            maxResults: 5
+            maxResults: 15
         });
         request.execute(function(response) {
             var options_str = '<li></li>';
@@ -135,7 +135,7 @@ Template.user_page.events({
                         '<div style="display: inline-block">' +
                             '<img src="'+item.snippet.thumbnails.default.url+'"/>' +
                         '</div>' +
-                        '<div style="display: inline-block; position: relative;top: -40px; font-size:large; padding: 10px;max-width: 325px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' +
+                        '<div style="display: inline-block; position: relative;top: -40px; font-size:large; padding: 10px;max-width: 365px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">' +
                                 item.snippet.title +
                         '</div>' +
                         '<br/>' +
@@ -196,7 +196,7 @@ Template.user_page.events({
                 type: 'video',
                 q: q,
                 part: 'snippet',
-                maxResults: 5
+                maxResults: 15
             });
             request.execute(function(response) {
                 var options_str = '<li></li>';

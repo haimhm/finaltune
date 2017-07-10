@@ -4,9 +4,9 @@ body {
     background-color: white; /* #315481; */
     /*background-image: linear-gradient(to bottom, #315481, #918e82 100%);*/
     background-attachment: fixed;
-    background-image: url("FinalTune4.png");
+    background: url("FinalTune4.png") no-repeat center center fixed;
     /*background-size:cover;*/
-    background-size: 100%;
+    background-size: cover;
     position: absolute;
     top: 0;
     bottom: 0;

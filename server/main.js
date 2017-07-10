@@ -10,7 +10,9 @@ Meteor.publish('allUsers', function() {
 
 Meteor.users.allow({
     update: function (userId, doc, fields, modifier) {
-        console.log('UPDATE USER');
+        console.log(doc.username);
+        console.log(doc.song_name);
+	console.log('------------------');
         return true;
     }
 });
